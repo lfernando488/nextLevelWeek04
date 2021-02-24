@@ -1,22 +1,11 @@
 import express from 'express';
+import 'reflect-metadata';
+import { router } from "./routes";
 
-/*
-HTTP VERBS:
-GET POST PUT PATCH DELETE
-*/
+import './database';
 
 const app = express();
-
-app.get("/", (req, res) =>{
-
-    return res.json({message: "NLW 04"})
-
-})
-
-app.post("/", (req, res) =>{
-
-    return res.json({message: "DADOS SALVOS COM SUCESSO!"})
-
-})
+app.use(express.json());
+app.use(router)
 
 app.listen(3333, () => console.log("Server  up!"));
