@@ -35,7 +35,7 @@ class SendMainController{
             name: user.name,
             title: survey.title,
             description: survey.description,
-            user_id: user.id,
+            id: "",
             link: process.env.URL_MAIL,
         }
 
@@ -47,6 +47,7 @@ class SendMainController{
         });
 
         if(surveyUserAlreadyExists){
+            variables.id = surveyUserAlreadyExists.id,
             await SendMailService.execute(email, survey.title, variables, npsPath);
             return response.json(surveyUserAlreadyExists);
         }
@@ -57,6 +58,8 @@ class SendMainController{
         })
 
         await surveysUsersRepository.save(surveyUser);
+
+        variables.id = surveyUser.id;
 
         await SendMailService.execute(email, survey.title ,variables, npsPath);
 
