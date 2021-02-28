@@ -1,4 +1,4 @@
 import { app } from "./app";
 
 
-app.listen(3333, () => console.log("Server  up!"));
+app.listen(3334, () => console.log("Server  up!"));
