@@ -1,3 +1,4 @@
+import { AppError } from './../errors/AppError';
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { SurveyRepository } from '../repositories/SurveyRepository';
@@ -18,17 +19,13 @@ class SendMainController{
         const user = await usersRepository.findOne({email});
 
         if(!user){
-            return response.status(400).json({
-                error: "User does not exists!"
-            });
+            throw new AppError("User Does not exists!")
         }
 
         const survey = await surveysRepository.findOne({ id: survey_id});
 
         if(!survey){
-            return response.status(400).json({
-                error: "survey does not exists!"
-            });
+            throw new AppError("Survey Does not exists!")
         }
 
         const variables = {

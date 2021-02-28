@@ -17,7 +17,7 @@ class AnswerController{
         });
 
         if(!surveyUser){
-            throw new AppError("Survey user does not exits", 400);
+            throw new AppError("Survey user does not exits");
         }
 
         surveyUser.value = Number(value);
